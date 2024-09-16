@@ -88,13 +88,13 @@ col1, col2, col3, col4 = st.columns(4)
 
 # Sliders in each column
 with col1:
-    SL = st.slider("Source Level (SL)", min_value=0, max_value=200, step=5, value=165)
+    SL = st.slider("Source Level (SL)", min_value=0, max_value=200, step=5, value=140)
 
 with col2:
-    DT = st.slider("Detection Threshold (DT)", min_value=0, max_value=60, step=5, value=30)
+    DT = st.slider("Detection Threshold (DT)", min_value=0, max_value=60, step=5, value=20)
 
 with col3:
-    NL = st.slider("Ambient Noise Level (NL)", min_value=75, max_value=100, step=2, value=85)
+    NL = st.slider("Ambient Noise Level (NL)", min_value=75, max_value=100, step=2, value=60)
 
 with col4:
     PG = st.slider("Processing Gain (PG)", min_value=0, max_value=30, step=3, value=0)

@@ -5,7 +5,6 @@ import streamlit as st
 st.set_page_config(page_title='Propagation examples')
 st.title('Propagation examples')
 
-import streamlit as st
 
 st.header("Sonar equation")
 # Display the equation in LaTeX

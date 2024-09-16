@@ -38,10 +38,13 @@ echolocation clicks used in feeding contexts. You want to test if that would mak
 propagation!
 """)
 
-st.image("/Users/lb736/Documents/08. TEACHING/2024 Cornell/20230917 Sound Propagation/PropagationLossExamples/img/ActiveSpace.png",
+
+# Direct link to the image
+image_url = "https://github.com/leabouffaut/PropagationLossExamples/blob/main/ActiveSpace.png?raw=true"
+st.image(image_url,
          caption=None,
          width=None,
-         use_column_width=None,
+         use_column_width=True,
          clamp=False,
          channels="RGB", output_format="auto")
 

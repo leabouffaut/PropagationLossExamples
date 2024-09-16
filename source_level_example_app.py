@@ -38,7 +38,10 @@ You're in charge of reproducing the measurement of its source level and plan to 
 st.markdown("Transformed to determine $SL$ it becomes (eq. 2):")
 st.latex(r"SL = DT + TL + NL - PG")
 
-st.image("/Users/lb736/Documents/08. TEACHING/2024 Cornell/20230917 Sound Propagation/PropagationLossExamples/img/SourceLevel.png",
+
+# Direct link to the image
+image_url = "https://github.com/leabouffaut/PropagationLossExamples/blob/main/SourceLevel.png?raw=true"
+st.image(image_url,
          caption=None,
          width=None,
          use_column_width=None,

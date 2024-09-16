@@ -1,12 +1,13 @@
 import streamlit as st
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Set up the Streamlit page
 st.set_page_config(page_title='Propagation examples')
 st.title('Propagation examples')
 
 
-st.header("Sonar equation")
+st.header("Sonar equation (eq. 1)")
 # Display the equation in LaTeX
 st.latex(r"SL - PL - (NL - PG) \geq DT")
 
@@ -50,7 +51,7 @@ st.image(image_url,
 
 # Sonar equation
 st.markdown("""
-At the maximum detection range, the sonar equation (eq. 1) can be written as (eq. 3):
+At the maximum detection range, the sonar equation (eq. 1) can be written as (eq. 2):
 """)
 
 # Display equation using LaTeX
@@ -65,7 +66,7 @@ st.subheader("1) Estimate the Propagation Loss (PL)")
 st.markdown("""
 Using the following numerical values $SL = 165$ dB re 1 μPa @1m, $NL = 85$ dB and $DT = 30$ dB that are true for the entire bandwidth of the slow click, what would be the value of $TL$ at the maximum range?
 
-Isolating $PL$ from (eq. 3) it becomes (eq. 4):
+Isolating $PL$ from (eq. 2) it becomes (eq. 3):
 """)
 st.latex(r"PL = SL - NL - DT + PG")
 
@@ -92,7 +93,7 @@ with col2:
     DT = st.slider("Detection Threshold (DT)", min_value=0, max_value=60, step=5, value=30)
 
 with col3:
-    NL = st.slider("Ambient Noise Level (NL)", min_value=0, max_value=100, step=5, value=85)
+    NL = st.slider("Ambient Noise Level (NL)", min_value=75, max_value=100, step=2, value=85)
 
 with col4:
     PG = st.slider("Processing Gain (PG)", min_value=0, max_value=30, step=3, value=0)
@@ -105,7 +106,7 @@ st.subheader("2) Determine the maximum range and associated active space")
 st.markdown("""
 Data from bio-logging shows that slow clicks in the Arctic are produced close to the water surface.
 In these colder regions, it means that the animal is vocalizing close to the minimum sound speed, 
-minimizing the propagation loss, which are then mainly due to cylindrical spreading such as (eq. 5):
+minimizing the propagation loss, which are then mainly due to cylindrical spreading such as (eq. 4):
 """)
 
 st.latex(r"PL = 10\log_{10}(r).")
@@ -121,12 +122,12 @@ st.latex(r"y = a\log_{10}(x) <-> x = 10^{\frac{y}{a}}.")
 
 # Heading and explanation
 st.markdown("""
-First, we can transform (eq. 5) to isolate the range (eq. 6):
+First, we can transform (eq. 4) to isolate the range (eq. 5):
 """)
 st.latex(r"r = 10^{\frac{PL}{10}}")
 
 st.markdown("""
-Then, the maximum range can be solved by replacing the previous expression of $PL$ from (eq. 4) in (eq. 6). 
+Then, the maximum range can be solved by replacing the previous expression of $PL$ from (eq. 3) in (eq. 5). 
 It becomes:
 """)
 
@@ -139,9 +140,9 @@ def plot_detection_range(SL, DT, NL, PG, geom_spreading):
 
     # Calculate the radius of the circle
     radius = 10 ** ((SL - NL - DT + PG) / geom_spreading) / 1000
-
+    plt.grid()
     # Create a circle representing the active space
-    circle = plt.Circle((0, 0), radius, color='blue', alpha=0.5)
+    circle = plt.Circle((0, 0), radius, color='red', alpha=0.5)
     ax.add_artist(circle)
 
     # Set limits and labels
@@ -149,11 +150,17 @@ def plot_detection_range(SL, DT, NL, PG, geom_spreading):
     ax.set_ylim([-500, 500])
     ax.set_aspect('equal')
 
-    plt.title(f'Active Space = {radius:.2f} km')
+    #plt.title(f'Active Space = {radius:.2f} km')
     plt.xlabel('x (km)')
     plt.ylabel('y (km)')
 
     st.pyplot(fig)
+
+    st.markdown(f"""
+    <div style="background-color:#d4edda;padding:10px;border-radius:5px;">
+    <p style='color:#155724; font-size:20px;'>Detection range = {radius} km, Active space = {np.pi*radius**2:.2f} km^2 </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 # Sliders for interactive input
@@ -162,6 +169,8 @@ col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     geom_spreading = st.slider("Geometric Spreading (dB/km)", min_value=10, max_value=20, step=5, value=10)
 
+
 # Plot the detection range
 plot_detection_range(SL, DT, NL, PG, geom_spreading)
 
+st.subheader("3) How does the active space change when increasing the noise level?")

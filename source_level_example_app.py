@@ -1,7 +1,5 @@
 import streamlit as st
-import numpy as np
-import plotly.graph_objects as go
-#import scipy.signal as sp
+
 
 # Set up the Streamlit page
 st.set_page_config(page_title='Propagation examples')

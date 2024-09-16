@@ -1,5 +1,4 @@
 import streamlit as st
-!pip3 install matplotlib
 import matplotlib.pyplot as plt
 
 # Set up the Streamlit page

@@ -1,23 +1,20 @@
 import streamlit as st
 import numpy as np
-import plotly.graph_objects as go
 import matplotlib.pyplot as plt
-#import scipy.signal as sp
 
 # Set up the Streamlit page
 st.set_page_config(page_title='Propagation examples')
 st.title('Propagation examples')
 
-import streamlit as st
 
 st.header("Sonar equation")
 # Display the equation in LaTeX
-st.latex(r"SL - TL - (NL - PG) \geq DT")
+st.latex(r"SL - PL - (NL - PG) \geq DT")
 
 # Explanation of variables
 st.markdown("""
 - **SL**: Source Level in dB re. 20µPa @ 1m,
-- **TL**: Transmission Loss in dB,
+- **PL**: Propagation Loss in dB,
 - **NL**: Ambient Noise Level in dB re. 20µPa,
 - **PG**: Processing Gain in dB, and
 - **DT**: Detection Threshold in dB re. 20µPa.
@@ -71,12 +68,12 @@ Isolating $PL$ from (eq. 3) it becomes (eq. 4):
 st.latex(r"PL = SL - NL - DT + PG")
 
 
-# Function to calculate Transmission Loss (TL)
+# Function to calculate Transmission Loss (PL)
 def find_TL(SL, NL, DT, PG):
-    TL = SL - NL - DT + PG
+    PL = SL - NL - DT + PG
     st.markdown(f"""
         <div style="background-color:#d4edda;padding:10px;border-radius:5px;">
-            <p style='color:#155724; font-size:20px;'>PL = {TL} dB re. 1µPa</p>
+            <p style='color:#155724; font-size:20px;'>PL = {PL} dB re. 1µPa</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -109,10 +106,10 @@ In these colder regions, it means that the animal is vocalizing close to the min
 minimizing the propagation loss, which are then mainly due to cylindrical spreading such as (eq. 5):
 """)
 
-st.latex(r"TL = 10\log_{10}(r).")
+st.latex(r"PL = 10\log_{10}(r).")
 
 st.markdown("""
-Using the previously calculated $TL$, what would be the maximum detection range?
+Using the previously calculated $PL$, what would be the maximum detection range?
 
 Note:
 """)
@@ -124,7 +121,7 @@ st.latex(r"y = a\log_{10}(x) <-> x = 10^{\frac{y}{a}}.")
 st.markdown("""
 First, we can transform (eq. 5) to isolate the range (eq. 6):
 """)
-st.latex(r"r = 10^{\frac{TL}{10}}")
+st.latex(r"r = 10^{\frac{PL}{10}}")
 
 st.markdown("""
 Then, the maximum range can be solved by replacing the previous expression of $PL$ from (eq. 4) in (eq. 6). 

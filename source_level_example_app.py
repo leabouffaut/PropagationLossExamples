@@ -16,7 +16,7 @@ st.latex(r"SL - TL - (NL - PG) \geq DT")
 # Explanation of variables
 st.markdown("""
 - **SL**: Source Level in dB re. 20µPa @ 1m,
-- **TL**: Transmission Loss in dB,
+- **Pl**: Propagation Loss in dB,
 - **NL**: Ambient Noise Level in dB re. 20µPa,
 - **PG**: Processing Gain in dB, and
 - **DT**: Detection Threshold in dB re. 20µPa.
@@ -48,7 +48,7 @@ st.image("/Users/lb736/Documents/08. TEACHING/2024 Cornell/20230917 Sound Propag
          channels="RGB", output_format="auto")
 
 st.markdown("""
-To avoid damaging your recording equipment, you take the measurement at a distance where the transmission loss ($TL$) 
+To avoid damaging your recording equipment, you take the measurement at a distance where the propagation loss ($PL$) 
 is estimated to be 65 dB in the bandwidth of the White Bellbird call. 
 
 The recording is performed with a focal recorder with a parabolic reflector that gives you a processing gain ($PG$) of 4 dB, allowing a detection threshold ($DT$) of 0. 

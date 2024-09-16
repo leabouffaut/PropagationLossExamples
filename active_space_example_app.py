@@ -1,6 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
+from streamlit import title
 
 # Set up the Streamlit page
 st.set_page_config(page_title='Propagation examples')
@@ -136,6 +137,7 @@ st.latex(r"r_{max} = 10^{\frac{SL - NL - DT}{10}}")
 
 # Function to plot detection range
 def plot_detection_range(SL, DT, NL, PG, geom_spreading):
+    st.markdown("Sperm whale active space plot")
     fig, ax = plt.subplots(figsize=(5, 5))
 
     # Calculate the radius of the circle
@@ -158,7 +160,7 @@ def plot_detection_range(SL, DT, NL, PG, geom_spreading):
 
     st.markdown(f"""
     <div style="background-color:#d4edda;padding:10px;border-radius:5px;">
-    <p style='color:#155724; font-size:20px;'>Detection range = {radius} km, Active space = {np.pi*radius**2:.2f} km^2 </p>
+    <p style='color:#155724; font-size:20px;'>Active space = {radius} km </p>
     </div>
     """, unsafe_allow_html=True)
 

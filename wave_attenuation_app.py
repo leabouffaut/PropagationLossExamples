@@ -8,9 +8,8 @@ st.set_page_config(page_title='Wave attenuation through medium')
 st.title('Wave attenuation through medium')
 
 st.markdown("""
-This example aims to illustrate the effect of propagation on a signal. We use a source level of $189$ dB re. 1μPa @ 1m, 
-representative of fin whales source levels and signal attenuation through geometrical spreading (cylindrical) 
-that will be covered later in this lecture.
+This example aims to illustrate one effect of propagation on an acoustic signal. We use a source level of $189$ dB re. 1μPa @ 1m, 
+representative of fin whale calls, and estimate signal attenuation through geometrical spreading (cylindrical).
 """)
 
 # User-defined frequency
